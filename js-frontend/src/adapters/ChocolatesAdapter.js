@@ -6,5 +6,19 @@ class ChocolatesAdapter {
     getChocolates() {
         return fetch(this.baseUrl).then(res => res.json())
     }
-    
+
+    createChocolate(value) {
+        const chocolate = {
+            body: value,
+        }
+        return fetch(this.baseUrl, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({chocolate})
+        })
+        .then(res => res.json ())
+    }
+
 }

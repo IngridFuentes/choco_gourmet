@@ -4,21 +4,39 @@
         <meta charset="UTF-8">
         <meta name="viewport" content=width=device-width>
         <meta http-equiv='X-UA-Compatible' content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <title>CHOCO GOURMET APP</title>
     </head>
     <body>
         <div class="container">
-            <h1> CHOCO GOURMET APP</h1>
-            <div id="new-chocolate-container"
-            <form id="new-chocolate-form">
-                <input type="text"/>
-                <input type="submit"/>
-            </form>
-            <div id="chocolates-container">
-
+            <center>
+                <strong>
+                    <i>
+                        <h1> CHOCO GOURMET </h1>
+                    
+                    </i>
+                </strong>
+            </center>
+            <center>
+                <img id='title-pic' src = "https://cdn3.volusion.com/saczq.wbkrk/v/vspfiles/photos/ChocTruff1-2.jpg?v-cache=1376342054">
+            </center>
+            <br>
+            <div id="new-chocolate-container">
+               <center> <form id="new-chocolate-form">
+                    <input type="text" name="chocolate-desc" id="new-chocolate-desc">
+                    <input type="submit" value="Submit">
+                </form>
+               </center>
+            <br>
+            </div>
+            <div id="chocolates-content">
+               <div id="chocolates-container">  
+               </div>
+               <div id="chocolate-show">
+               </div>           
             </div>
         </div>
-       
+        <script type="text/javascript" src="src/components/chocolate.js"></script>
         <script src="src/components/chocolates.js"></script>
         <script src="src/components/app.js"></script>
         <script src="src/adapters/ChocolatesAdapter.js"></script>

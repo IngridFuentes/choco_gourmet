@@ -24,3 +24,9 @@ ul {
 .delete-chocolate-link {
     color: pink;
 } */
+
+#title-pic{
+    border: 5px solid black;
+    height:20em;
+    width:35em;
+}
