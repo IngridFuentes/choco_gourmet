@@ -1,11 +1,17 @@
-// class Order {
-//     constructor() {
-//        this.eventListeners()
-//     }
+class Order {
+    constructor(orderJSON) {
+        // this.id = orderJSON.id
+        // this.body = orderJSON.body
+        // this.user_id = orderJSON.user_id
+        this.chocolate = orderJSON.chocolate
+        this.price = orderJSON.price
+    }
 
-//     eventListeners() {
-//        this.chocolateBuyButton.innerHTML = document.getElementById('new-order-form')
-//        this.orderButton.addEventListener('Buy it', this.createOrder.bind(this))
-//     }
+    renderOrder(){
+        return `<button>
+                    Buy
+                </button>`
+    }
+}
 
-// }
+{/* <a class="delete-note-link">Delete</a> */}

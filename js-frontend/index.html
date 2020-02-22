@@ -8,25 +8,27 @@
         <title>CHOCO GOURMET APP</title>
     </head>
     <body>
+        <div id="login-container">
+            <form id="login-form">
+                <input type="text" name="new-customer-name" id="new-customer-name">
+                <input type="text" name="new-customer-email" id="new-customer-email">
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <br>
         <div class="container">
             <center>
                 <strong>
-                    <i>
+                    <em>
                         <h1> CHOCO GOURMET </h1>
                     
-                    </i>
+                    </em>
                 </strong>
             </center>
             <center>
                 <img id='title-pic' src = "https://cdn3.volusion.com/saczq.wbkrk/v/vspfiles/photos/ChocTruff1-2.jpg?v-cache=1376342054">
             </center>
-            <br>
-            <div id="new-chocolate-container">
-               <center> <form id="new-chocolate-form">
-                    <input type="text" name="chocolate-desc" id="new-chocolate-desc">
-                    <input type="submit" value="Submit">
-                </form>
-               </center>
+            
             <br>
             </div>
             <div id="chocolates-content">
@@ -37,12 +39,14 @@
             </div>
         </div>
         <script src="src/adapters/OrdersAdapter.js"></script>
-        <script src="src/adapters/CustomersAdapter.js"></script>
-        <script type="text/javascript" src="src/components/chocolate.js"></script>
-        <script src="src/components/chocolates.js"></script>
-        <script src="src/components/app.js"></script>
         <script src="src/adapters/ChocolatesAdapter.js"></script>
-        <script src="src/components/customers.js"></script>
+        <!-- <script src="src/adapters/CustomersAdapter.js"></script> -->
+        <script src="src/components/orders.js"></script>
+        <script src="src/components/chocolates.js"></script>
+        <script src="src/components/chocolate.js"></script>
+        <script src="src/components/order.js"></script>
+        <script src="src/components/app.js"></script>
+        <!-- <script src="src/components/customers.js"></script> -->
         <script src="src/index.js"></script>
 
     </body>

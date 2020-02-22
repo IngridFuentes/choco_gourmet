@@ -1,12 +1,20 @@
 class Chocolate {
     constructor(chocolateJSON) {
-        // this.id = chocolateJSON.id
         this.name = chocolateJSON.name
         this.description = chocolateJSON.description
         this.price = chocolateJSON.price
     } 
     
-    // getChocolates() {
-    //     return `<li> ${chocolate.name}: ${chocolate.description} $ ${chocolate.price}</li>`
-    // }
+    renderChocolate(){
+        return `
+                <div class="chocolate-container">
+                <img src="images/dark-chocolate.jpg"/>
+                <div class="chocolate" data-id=${this.name}>
+                ${this.name}
+                </div>
+                <div class="description">${this.description}</div> 
+                <button>BUY <span style="font-size: 20px;">$ ${this.price}</span> </button>
+                </div>
+                `
+    }
 }

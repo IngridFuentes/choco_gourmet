@@ -5,7 +5,8 @@ class CustomersAdapter {
 
     loginCustomer(value) {
         const customer = {
-            name: value
+            name: value,
+            email: email
         }
         return fetch(`${this.baseUrl}/login`, {
             method: 'POST',
