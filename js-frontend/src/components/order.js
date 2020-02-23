@@ -13,5 +13,3 @@ class Order {
     //             </button>`
     // }
 }
-
-{/* <a class="delete-note-link">Delete</a> */}
