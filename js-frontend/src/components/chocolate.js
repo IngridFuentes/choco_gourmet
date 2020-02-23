@@ -13,7 +13,7 @@ class Chocolate {
                 ${this.name}
                 </div>
                 <div class="description">${this.description}</div> 
-                <button>BUY <span style="font-size: 20px;">$ ${this.price}</span> </button>
+                <button class="buy-btns">BUY <span style="font-size: 20px;">$ ${this.price}</span> </button>
                 </div>
                 `
     }

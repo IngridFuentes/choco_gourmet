@@ -7,11 +7,11 @@ class Order {
         this.price = orderJSON.price
     }
 
-    renderOrder(){
-        return `<button>
-                    Buy
-                </button>`
-    }
+    // renderOrder(){
+    //     return `<button>
+    //                 Buy
+    //             </button>`
+    // }
 }
 
 {/* <a class="delete-note-link">Delete</a> */}
