@@ -1,13 +1,38 @@
 class Api::V1::OrdersController < ApplicationController
-    def index 
+  def index
     @orders = Order.all
-    ender json: @orders, status: 200
+    render json: @orders, status: 200
+  end
 
-    end
-
-    def show 
+  def show
     @order = Order.find(params[:id])
-    ender json: @order, status: 200
+    render json: @order, status: 200
+  end
 
+  def new
+  end
+
+  def edit
+    @order = Order.find(params[:id])
+    render json: @order, status: 200
+  end
+
+  def create
+    @order = Order.new(order_params)
+    if @order.save
+      render json: @order, status: 200
     end
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    render json: @order, status: 200
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:id, :customer_id, :chocolate_id, :quantity, :total)
+  end
 end

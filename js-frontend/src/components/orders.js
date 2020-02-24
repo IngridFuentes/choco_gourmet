@@ -3,33 +3,43 @@ class Orders {
         this.orders = []
         this.adapter = new OrdersAdapter()
         
-        // this.customersAdapter = new CustomersAdapter()
 
         this.initBindingsAndEventListeners()
-        // this.fetchAndLoadOrders()
-        // this.createOrder()
     }
     
     initBindingsAndEventListeners(){
         this.chocolatesContainer = document.getElementById('chocolates-container')
-        this.buyBtns = document.querySelectorAll('.buy-btns')
-        // this.buyBtns = document.getElementsByClassName('buy-btns')
-       console.log(this.buyBtns)
-        // this.buyBtns.forEach(btn => btn.addEventListener('click', this.createOrder))
-    //    for (let button of this.buyBtns) {
-    //     button.addEventListener('click', (e) => {
-    //         console.log(e)
-    //       });
-    // //    }
+        this.chocolatesContainer.addEventListener("click", () => alert("Clicked"))
+        // this.buyBtns = document.querySelectorAll('.buyBtns')
+        this.buyBtns = document.getElementsByClassName('buyBtns')
+       console.log("buyBtns", this.buyBtns)
+       let b = document.getElementsByClassName('chocolate')[0]
+       console.log("b", b)
+            // this.buyBtns.forEach(btn => btn.addEventListener('click', this.createOrder))
+        //    for (let button of this.buyBtns) {
+        //     button.addEventListener('click', (e) => {
+        //         console.log(e)
+        //       });
+        // //    }
     // const button = ''
-    const buyBtns = document.getElementsByClassName('buy-tns');
-    document.querySelector('body').addEventListener('click', function(event) {
-        if (event.target.tagName.toLowerCase() == 'button') {
-            debugger
-            this.createOrder(event).bind(this);
-        }
+    const buyBtns = document.getElementsByClassName('buyBtns');
+    
+    document.querySelectorAll('.buyBtns').forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault()
+            console.log("HEY")
+        })
+      })
+
+    // document.querySelector('body').addEventListener('click', function(event) {
+    //     if (event.target.tagName.toLowerCase() == 'button') {
+    //         // debugger
+    //         this.createOrder(event).bind(this)
+    //         console.log('click')
+
+    //     }
         // buyButton();
-    });
+    };
     //   function buyButton() {
     //     for (const e of buyBtns) {
     //         if (event.target.innerHTML == button) {
@@ -87,7 +97,7 @@ class Orders {
 
     }
 
-    createOrder(e) {
+    function createOrder(e) {
         // debugger
         console.log("what")
         e.preventDefault()
@@ -97,5 +107,5 @@ class Orders {
         })
     }
 
-}
+
 

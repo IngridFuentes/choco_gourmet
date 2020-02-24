@@ -1,11 +1,12 @@
 class Api::V1::CustomersController < ApplicationController
-  def index
-    @customers = Customer.all
-    render json: @customers, status: 200
+  def login
+    customer = Customer.find_or_create_by(customer_params)
+    render json: customer, status: 200
   end
 
-  def show
-    @customer = Customer.find(params[:id])
-    ender json: @customer, status: 200
+  private
+
+  def customer_params
+    params.require(:customer).permit(:name, :email)
   end
 end

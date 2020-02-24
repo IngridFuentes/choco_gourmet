@@ -7,12 +7,13 @@ class OrdersAdapter {
         return fetch(this.baseUrl).then(res => res.json())
     }
 
-    createOrder(quantity, total, customer_id, chocolate_id) {
+    createOrder(customer_id, chocolate_id, quantity, total) {
         const order = {
-            quantity: quantity,
-            total: total,
+        
             customer_id: id,
-            chocolate_id: id
+            chocolate_id: id,
+            quantity: quantity,
+            total: total
         }
         console.log('req body obj: ', order["customer_id", "chocolate_id"]);
         return fetch(this.baseUrl, {
