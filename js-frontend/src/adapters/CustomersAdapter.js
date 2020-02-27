@@ -1,14 +1,16 @@
 class CustomersAdapter {
     constructor () {
-        this.baseUrl = 'http://localhost:3000/api/v1/customers'
+        this.baseurl = 'http://localhost:3000/api/v1/customers'
     }
 
-    loginCustomer(value) {
+    loginCustomer(value, email) {
         const customer = {
             name: value,
             email: email
         }
-        return fetch(`${this.baseUrl}/login`, {
+
+        console.log(customer)
+        return fetch(`${this.baseurl}/login`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

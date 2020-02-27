@@ -1,5 +1,6 @@
 class Chocolate {
     constructor(chocolateJSON) {
+        this.id = chocolateJSON.id
         this.name = chocolateJSON.name
         this.description = chocolateJSON.description
         this.price = chocolateJSON.price
@@ -9,7 +10,7 @@ class Chocolate {
         return `
                 <div class="chocolate-container">
                     <img src="images/dark-chocolate.jpg"/>
-                    <div class="chocolate" data-id=${this.name}>
+                    <div class="chocolate" data-id=${this.id}>
                     ${this.name}
                     </div>
                     <div class="description">${this.description}</div> 

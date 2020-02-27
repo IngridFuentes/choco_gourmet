@@ -1,12 +1,12 @@
 class Customer {
     constructor(customerJSON) {
+        this.id = customerJSON.id
         this.name = customerJSON.name
         this.email = customerJSON.email
         
     } 
     
-    renderCustomer(){
-        return `<li data-id=${this.name}>${this.name}: ${this.description} $ ${this.price}
-                </li>`
-    }
+    // renderCustomer(){
+    //     console.log(this.id)
+    // }
 }
