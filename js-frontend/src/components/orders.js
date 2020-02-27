@@ -6,7 +6,7 @@ class Orders {
         
 
         this.initBindingsAndEventListeners()
-        this.fetchAndLoadOrders()
+        // this.fetchAndLoadOrders()
     }
     
     initBindingsAndEventListeners(){
@@ -33,18 +33,18 @@ class Orders {
 
     }
 
-    fetchAndLoadOrders() {
-        this.adapter
-        .getOrders()
-        .then(orders => {
-            orders.forEach(order => {
-                this.orders.push(new Order(order))
-            });
-        })
-        .then(() => {
-            this.render()
-        })
-    }
+    // fetchAndLoadOrders() {
+    //     this.adapter
+    //     .getOrders()
+    //     .then(orders => {
+    //         orders.forEach(order => {
+    //             this.orders.push(new Order(order))
+    //         });
+    //     })
+    //     .then(() => {
+    //         this.render()
+    //     })
+    // }
 
     render() {
         const curr_customer = localStorage.getItem('currentCustomer')
@@ -134,11 +134,13 @@ class Orders {
                 .then(customer => {
                     localStorage.setItem('currentCustomer', parseInt(customer.id))
                     console.log(`currentCustomer ${customer.name} ${customer.email} set with id: ${localStorage.getItem('currentCustomer')}`);
+                    alert(`${customer.name}`)
                 })
                 .then(() => this.render())
             // this.newCustomerInput.value =""
             // this.newCustomerEmail.email =""
             // btn.setAttribute('value', 'Logout')
+                 
         } else {
             localStorage.clear()
             // location.reload()

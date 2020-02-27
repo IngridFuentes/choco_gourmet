@@ -8,7 +8,7 @@ class Order {
     }
 
     renderOrder(){
-        return `<li data-id=${this.id}><a class="delete-order-link">Delete</a></li>`
+        // return `<li data-id=${this.id}><a class="delete-order-link">Delete</a></li>`
     }
 }
 

@@ -7,6 +7,6 @@ class Customer {
     } 
     
     // renderCustomer(){
-    //     console.log(this.id)
+    //     console.log(customer)
     // }
 }
