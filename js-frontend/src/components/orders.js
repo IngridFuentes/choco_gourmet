@@ -3,13 +3,13 @@ class Orders {
         this.orders = []
         this.adapter = new OrdersAdapter()
         this.customersAdapter = new CustomersAdapter()
-        
+
 
         this.initBindingsAndEventListeners()
-        // this.fetchAndLoadOrders()
+        this.fetchAndLoadOrders()
     }
-    
-    initBindingsAndEventListeners(){
+
+    initBindingsAndEventListeners() {
 
         this.loginForm = document.getElementById('login-form')
         this.newCustomerInput = document.querySelector('#new-customer-name')
@@ -22,54 +22,59 @@ class Orders {
 
         this.chocolatesContent = document.getElementById('chocolates-content')
         this.chocolatesContent.addEventListener("click", (e) => {
-            if(e.target.tagName.toLowerCase() == "button"){
+            if (e.target.tagName.toLowerCase() == "button") {
                 console.log("button clicked");
+                // debugger
                 this.createOrder(e)
             }
         })
         this.ordersContainer = document.getElementById('orders-container')
-        // this.newOrderBody = document.getElementById('new-order-body')
+        this.newOrderBody = document.getElementById('new-order-body')
         // this.newOrder.addEventListener('submit', this.createOrder.bind(this))
 
     }
 
-    // fetchAndLoadOrders() {
-    //     this.adapter
-    //     .getOrders()
-    //     .then(orders => {
-    //         orders.forEach(order => {
-    //             this.orders.push(new Order(order))
-    //         });
-    //     })
-    //     .then(() => {
-    //         this.render()
-    //     })
-    // }
+    fetchAndLoadOrders() {
+        this.adapter
+        .getOrders()
+        .then(orders => {
+            orders.forEach(order => {
+                this.orders.push(new Order(order))
+            });
+        })
+        .then(() => {
+            this.render()
+        })
+        console.log(this.orders)
+    }
 
     render() {
         const curr_customer = localStorage.getItem('currentCustomer')
+        const ordersContainer = document.getElementById('new-order')
         if (curr_customer) {
-            this.ordersContainer.innerHTML = `${this.orders.filter(order => order.customer_id == curr_customer).map(order => order.renderOrder()).join('')}`
+            this.ordersContainer.innerText = `${this.orders.filter(order => order.customer_id == curr_customer).map(order => order.renderOrder()).join('')}`
+        } else {
+            this.ordersContainer.innerHTML = 'Please login to make an order.'
         }
     }
 
 
 
 
-        // this.buyBtns = document.querySelectorAll('.buyBtns')
+    // this.buyBtns = document.querySelectorAll('.buyBtns')
     //     this.buyBtns = document.getElementsByClassName('buyBtns')
     //    console.log("buyBtns", this.buyBtns)
     //    let b = document.getElementsByClassName('chocolate')[0]
     //    console.log("b", b)
-            // this.buyBtns.forEach(btn => btn.addEventListener('click', this.createOrder))
-        //    for (let button of this.buyBtns) {
-        //     button.addEventListener('click', (e) => {
-        //         console.log(e)
-        //       });
-        // //    }
+    // this.buyBtns.forEach(btn => btn.addEventListener('click', this.createOrder))
+    //    for (let button of this.buyBtns) {
+    //     button.addEventListener('click', (e) => {
+    //         console.log(e)
+    //       });
+    // //    }
     // const button = ''
     // const buyBtns = document.getElementsByClassName('buyBtns');
-    
+
     // document.querySelectorAll('.buyBtns').forEach(button => {
     //     button.addEventListener('click', event => {
     //         event.preventDefault()
@@ -80,11 +85,11 @@ class Orders {
     // document.querySelector('body').addEventListener('click', function(event) {
     //     if (event.target.tagName.toLowerCase() == 'button') {
     //         // debugger
-    //         this.createOrder(event).bind(this)
+    //         this.(event).bind(this)
     //         console.log('click')
 
     //     }
-        // buyButton();
+    // buyButton();
     // };
     //   function buyButton() {
     //     for (const e of buyBtns) {
@@ -105,22 +110,24 @@ class Orders {
     //       }
     //     }
     // }
-        
 
-   createOrder(e) {
-        // debugger
+
+    createOrder(e) {
         const curr_customer = localStorage.getItem('currentCustomer')
-        // const value = this.newOrderItem.value;
-        console.log(e.target.parentNode.children[1].dataset.id)
-        this.adapter.createOrder(curr_customer).then(order => {
-        this.orders.push(new Order(order))
-        // this.newOrderBody.value = ''
-        //    this.render()
+        let order = {
+            customer_id: curr_customer,
+            chocolate_id: e.target.dataset.chocolateId,
+            quantity: quantity,
+            total: 20
+        }
+        this.adapter.createOrder(order).then(order => {
+            this.orders.push(new Order(order))
+            this.render()
         })
     }
 
     loginCustomer(e) {
-        
+
         e.preventDefault()
         // e.isDefaultPrevented()
         console.log('e.target: ', e.target.innerText);
@@ -128,19 +135,19 @@ class Orders {
         const btnText = e.target.innerText
         if (btnText == 'Login') {
             // console.log('what')
-            const name = this.newCustomerInput.value 
+            const name = this.newCustomerInput.value
             const email = this.newCustomerEmail.value
             this.customersAdapter.loginCustomer(name, email)
                 .then(customer => {
                     localStorage.setItem('currentCustomer', parseInt(customer.id))
                     console.log(`currentCustomer ${customer.name} ${customer.email} set with id: ${localStorage.getItem('currentCustomer')}`);
-                    alert(`${customer.name}`)
+                    alert(`${customer.id}`)
                 })
                 .then(() => this.render())
             // this.newCustomerInput.value =""
             // this.newCustomerEmail.email =""
             // btn.setAttribute('value', 'Logout')
-                 
+
         } else {
             localStorage.clear()
             // location.reload()
@@ -149,4 +156,3 @@ class Orders {
 
     }
 }
-

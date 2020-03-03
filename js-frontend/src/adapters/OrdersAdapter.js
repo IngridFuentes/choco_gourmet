@@ -7,25 +7,23 @@ class OrdersAdapter {
         return fetch(this.baseurl).then(res => res.json())
     }
 
-    createOrder(id, customer_id, chocolate_id) {
-        const order = {
-            id: id,
-            customer_id: customer_id,
-            chocolate_id: chocolate_id
-            // quantity: quantity,
-            // total: total
+    createOrder(order) {
+        const newOrder = {
+            customer_id: order.customer_id,
+            chocolate_id: order.chocolate_id,
+            quantity: order.quantity,
+            total: order.total
         }
-        // console.log( 'req customer_id obj: ', order["customer_id"]);
+        console.log( 'req order obj: ', order["customer_id"]);
         return fetch(this.baseurl, {
             method: 'POST', 
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ order })
+            body: JSON.stringify({ newOrder })
         })
         .then(res => {
-            
-            console.log(res.status)
+            console.log(res)
             return res
         })
         .then(res => res.json())

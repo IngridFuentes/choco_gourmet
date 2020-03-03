@@ -10,20 +10,14 @@ class App {
     }
 }
 
-// (function() {
-//     const cartInfo = document.getElementById('cart-info');
-//     const cart = document.getElementById('cart');
+     
+// function welcome(){
+//     var name = document.getElementById("name").value;
+//     var welcomeN = "Welcome" + name;
+//     // return welcomeN;
+//     console.log(welcomeN);
+//     window.alert(welcomeN);
+//     return false;
+// }
 
-//     cartInfo.addEventListener('click', function(){
-//         cart.classList.toggle("show-cart");
-//     })
-// })();
 
-// (function() {
-//     const buyBtn = document.querySelectorAll('.buyBtns');
-//     buyBtn.forEach(function(btn){
-//         btn.addEventListener("click", function(event){
-//             console.log(event.target);
-//         })
-//     })
-// })();

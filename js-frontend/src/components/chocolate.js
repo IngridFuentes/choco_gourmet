@@ -10,11 +10,11 @@ class Chocolate {
         return `
                 <div class="chocolate-container">
                     <img src="images/dark-chocolate.jpg"/>
-                    <div class="chocolate" data-id=${this.id}>
+                    <div class="chocolate" >
                     ${this.name}
                     </div>
                     <div class="description">${this.description}</div> 
-                    <button class="buyBtns">BUY <span style="font-size: 20px;">$ ${this.price}</span> </button>
+                    <button class="buyBtns" data-chocolate-id="${this.id}">BUY <span style="font-size: 20px;">$ ${this.price}</span> </button>
                 </div>
                 `
     }
