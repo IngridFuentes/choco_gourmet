@@ -14,7 +14,6 @@ class Orders {
         this.loginForm = document.getElementById('login-form')
         this.newCustomerInput = document.querySelector('#new-customer-name')
         this.newCustomerEmail = document.querySelector('#new-customer-email')
-        // this.loginForm.addEventListener('submit', this.loginCustomer)
         this.loginButton = document.getElementById('login-button')
         this.loginButton.addEventListener('click', this.loginCustomer.bind(this))
 
@@ -30,86 +29,9 @@ class Orders {
         })
         this.ordersContainer = document.getElementById('orders-container')
         this.newOrderBody = document.getElementById('new-order-body')
-        // this.newOrder.addEventListener('submit', this.createOrder.bind(this))
-
+        this.ordersContainer.addEventListener('dblclick', this.handleOrderClick.bind(this))
+        this.ordersContainer.addEventListener('blur', this.updateOrder.bind(this), true)
     }
-
-    fetchAndLoadOrders() {
-        this.adapter
-        .getOrders()
-        .then(orders => {
-            orders.forEach(order => {
-                this.orders.push(new Order(order))
-            });
-        })
-        .then(() => {
-            this.render()
-        })
-        console.log(this.orders)
-    }
-
-    render() {
-        const curr_customer = localStorage.getItem('currentCustomer')
-        // const ordersContainer = document.getElementById('new-order')
-        if (curr_customer) {
-            this.ordersContainer.innerHTML = `${this.orders.filter(order => order.customer_id == curr_customer).map(order => order.renderOrder()).join('')}`
-        } else {
-            this.ordersContainer.innerHTML = 'Please login to make an order.'
-        }
-    }
-
-
-
-
-    // this.buyBtns = document.querySelectorAll('.buyBtns')
-    //     this.buyBtns = document.getElementsByClassName('buyBtns')
-    //    console.log("buyBtns", this.buyBtns)
-    //    let b = document.getElementsByClassName('chocolate')[0]
-    //    console.log("b", b)
-    // this.buyBtns.forEach(btn => btn.addEventListener('click', this.createOrder))
-    //    for (let button of this.buyBtns) {
-    //     button.addEventListener('click', (e) => {
-    //         console.log(e)
-    //       });
-    // //    }
-    // const button = ''
-    // const buyBtns = document.getElementsByClassName('buyBtns');
-
-    // document.querySelectorAll('.buyBtns').forEach(button => {
-    //     button.addEventListener('click', event => {
-    //         event.preventDefault()
-    //         console.log("HEY")
-    //     })
-    //   })
-
-    // document.querySelector('body').addEventListener('click', function(event) {
-    //     if (event.target.tagName.toLowerCase() == 'button') {
-    //         // debugger
-    //         this.(event).bind(this)
-    //         console.log('click')
-
-    //     }
-    // buyButton();
-    // };
-    //   function buyButton() {
-    //     for (const e of buyBtns) {
-    //         if (event.target.innerHTML == button) {
-    //             // console.log("SAD")
-    //             mimicServerCall()
-    //             .then((result) => {
-    //               createOrder(e);
-    //             })
-    //             .catch((error) => {
-    //               console.log("Error!")
-    //             })
-    //         // } else if (event.target.innerHTML == buyBtn) {
-    //         //     // console.log("Happy" )
-    //         //     updateButton(e);
-    //         // }
-    //         // })
-    //       }
-    //     }
-    // }
 
 
     createOrder(e) {
@@ -128,6 +50,65 @@ class Orders {
         })
     }
 
+    handleOrderClick(e) {
+        if (e.target.classList.contains('delete-order-link')){
+            console.log('will delete', e.target.parentNode);
+            this.deleteOrder(e)
+        } else {
+            this.toggleOrder(e)
+        }
+    }
+
+    toggleOrder(e) {
+        const li = e.target
+        li.contentEditable = "true"
+        li.focus()
+        li.classList.add('editable')
+    }
+
+    updateOrder(e){
+        const li = e.target
+        li.contentEditable = "false"
+        li.classList.remove('editable')
+        const newValue = li.innerHTML
+        const id = li.dataset.id
+        if (id) {
+            this.adapter.updateOrder(newValue, id)
+        }
+    }
+
+
+    deleteOrder(e) {
+        const li = e.target.parentNode
+        const id = li.dataset.id
+        this.adapter.deleteOrder(id)
+        li.remove()
+    }
+
+
+    fetchAndLoadOrders() {
+        this.adapter
+        .getOrders()
+        .then(orders => {
+            orders.forEach(order => {
+                this.orders.push(new Order(order))
+            });
+        })
+        .then(() => {
+            this.render()
+        })
+        console.log(this.orders)
+    }
+
+    render() {
+        const curr_customer = localStorage.getItem('currentCustomer')
+        if (curr_customer) {
+            this.ordersContainer.innerHTML = `${this.orders.filter(order => order.customer_id == curr_customer).map(order => order.renderOrder()).join('')}`
+        } else {
+            this.ordersContainer.innerHTML = 'Please login to make an order.'
+        }
+    }
+
     loginCustomer(e) {
 
         e.preventDefault()
@@ -136,19 +117,19 @@ class Orders {
         const btn = e.target
         const btnText = e.target.innerText
         if (btnText == 'Login') {
-            // console.log('what')
             const name = this.newCustomerInput.value
             const email = this.newCustomerEmail.value
             this.customersAdapter.loginCustomer(name, email)
                 .then(customer => {
                     localStorage.setItem('currentCustomer', parseInt(customer.id))
                     console.log(`currentCustomer ${customer.name} ${customer.email} set with id: ${localStorage.getItem('currentCustomer')}`);
-                    alert(`${customer.id}`)
+                    alert(`Hello, ${customer.name}`)
                 })
                 .then(() => this.render())
-            // this.newCustomerInput.value =""
-            // this.newCustomerEmail.email =""
-            // btn.setAttribute('value', 'Logout')
+            this.newCustomerInput.value =""
+            this.newCustomerEmail.value =""
+            btn.setAttribute('value', 'Logout')
+        
 
         } else {
             localStorage.clear()

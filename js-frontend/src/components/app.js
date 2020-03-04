@@ -10,14 +10,5 @@ class App {
     }
 }
 
-     
-// function welcome(){
-//     var name = document.getElementById("name").value;
-//     var welcomeN = "Welcome" + name;
-//     // return welcomeN;
-//     console.log(welcomeN);
-//     window.alert(welcomeN);
-//     return false;
-// }
 
 
