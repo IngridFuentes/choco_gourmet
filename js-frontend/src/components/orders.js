@@ -50,9 +50,9 @@ class Orders {
 
     render() {
         const curr_customer = localStorage.getItem('currentCustomer')
-        const ordersContainer = document.getElementById('new-order')
+        // const ordersContainer = document.getElementById('new-order')
         if (curr_customer) {
-            this.ordersContainer.innerText = `${this.orders.filter(order => order.customer_id == curr_customer).map(order => order.renderOrder()).join('')}`
+            this.ordersContainer.innerHTML = `${this.orders.filter(order => order.customer_id == curr_customer).map(order => order.renderOrder()).join('')}`
         } else {
             this.ordersContainer.innerHTML = 'Please login to make an order.'
         }
@@ -117,9 +117,11 @@ class Orders {
         let order = {
             customer_id: curr_customer,
             chocolate_id: e.target.dataset.chocolateId,
-            quantity: quantity,
+            quantity: 1,
             total: 20
         }
+        console.log(order)
+        // debugger
         this.adapter.createOrder(order).then(order => {
             this.orders.push(new Order(order))
             this.render()

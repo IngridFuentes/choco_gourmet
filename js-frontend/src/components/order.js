@@ -8,8 +8,7 @@ class Order {
     }
 
     renderOrder(){
-        return `<ul data-id= ${this.id}>
-         </ul>`
+         return `<li data-id=${this.id}>Quantity: ${this.quantity} Total: ${this.total}</li>`
         //  <a class="delete-order-link">Delete</a> 
     }
 }
