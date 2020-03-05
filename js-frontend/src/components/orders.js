@@ -28,6 +28,7 @@ class Orders {
             }
         })
         this.ordersContainer = document.getElementById('orders-container')
+        this.ordersContainer.addEventListener('dblclick', this.handleOrderClick.bind(this))
         this.ordersContainer.addEventListener('submit', this.updateOrder.bind(this))
     }
 
