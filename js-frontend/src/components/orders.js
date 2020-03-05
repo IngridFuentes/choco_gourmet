@@ -28,19 +28,18 @@ class Orders {
             }
         })
         this.ordersContainer = document.getElementById('orders-container')
-        this.newOrderBody = document.getElementById('new-order-body')
-        this.ordersContainer.addEventListener('dblclick', this.handleOrderClick.bind(this))
-        this.ordersContainer.addEventListener('blur', this.updateOrder.bind(this), true)
+        this.ordersContainer.addEventListener('submit', this.updateOrder.bind(this))
     }
 
 
     createOrder(e) {
         const curr_customer = localStorage.getItem('currentCustomer')
+        console.dir(e.target)
         let order = {
             customer_id: curr_customer,
             chocolate_id: e.target.dataset.chocolateId,
             quantity: 1,
-            total: 20
+            total: e.target.dataset.price
         }
         console.log(order)
         // debugger
@@ -52,7 +51,7 @@ class Orders {
 
     handleOrderClick(e) {
         if (e.target.classList.contains('delete-order-link')){
-            console.log('will delete', e.target.parentNode);
+            console.log('This order will be deleted', e.target.parentNode);
             this.deleteOrder(e)
         } else {
             this.toggleOrder(e)
@@ -67,13 +66,10 @@ class Orders {
     }
 
     updateOrder(e){
-        const li = e.target
-        li.contentEditable = "false"
-        li.classList.remove('editable')
-        const newValue = li.innerHTML
-        const id = li.dataset.id
-        if (id) {
-            this.adapter.updateOrder(newValue, id)
+        e.preventDefault()
+        if (e.target.children[0].value) {
+            console.dir(e.target.children[0].value);
+        this.adapter.updateOrder(e.target.children[0].value)
         }
     }
 
@@ -129,7 +125,6 @@ class Orders {
             this.newCustomerInput.value =""
             this.newCustomerEmail.value =""
             btn.setAttribute('value', 'Logout')
-        
 
         } else {
             localStorage.clear()

@@ -5,8 +5,5 @@ class Customer {
         this.email = customerJSON.email
         
     } 
-    
-    // renderCustomer(){
-    //     console.log(customer)
-    // }
+
 }

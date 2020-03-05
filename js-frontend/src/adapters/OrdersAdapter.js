@@ -30,10 +30,10 @@ class OrdersAdapter {
         .catch((message) => console.log(message))
     }
     
-    updateOrder(value, id) {
+    updateOrder(quantity, total, id) {
         const order = {
-            quantity: value
-            
+            quantity: quantity,
+            total: total
         }
         return fetch(this.baseurl + `/${id}`, {
             method: 'PATCH', 
