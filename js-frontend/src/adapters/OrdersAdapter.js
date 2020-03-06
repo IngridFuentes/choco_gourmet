@@ -30,17 +30,17 @@ class OrdersAdapter {
         .catch((message) => console.log(message))
     }
     
-    updateOrder(quantity, total, id) {
-        const order = {
+    updateOrder(quantity, id) { 
+        const newOrder = {
             quantity: quantity,
-            total: total
+            // total: total
         }
         return fetch(this.baseurl + `/${id}`, {
             method: 'PATCH', 
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ order })
+            body: JSON.stringify({ newOrder })
         })
         .then(res => res.json())
         

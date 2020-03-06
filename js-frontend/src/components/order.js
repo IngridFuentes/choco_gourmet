@@ -9,7 +9,7 @@ class Order {
 
     renderOrder(){
          return `<li data-id=${this.id}>Quantity: ${this.quantity} Total: ${this.total} <button class="delete-order-link">Delete</button>
-          </li> 
+          
           <form>
                 <select data-id="order-id" >
                         <option value="">Please select</option>
@@ -19,9 +19,10 @@ class Order {
                         <option value="4">4</option>
                         <option value="5">5</option>
                 </select> 
-          <ul>
-                    <input data-id="order-id" type="submit" name="update-order" id="update" class="btn" value="Update" />
-          </ul>
+                    <ul>
+                                <input data-id="order-id" type="submit" name="update-order" id="order" class="btn" value="Update" />
+                    </ul>
+                </li> 
           </form>`
         
     }

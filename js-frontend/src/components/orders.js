@@ -67,10 +67,14 @@ class Orders {
     }
 
     updateOrder(e){
+        // debugger
         e.preventDefault()
+        const li = e.target.parentNode
+        const id = li.dataset.id 
+        const quantity = e.target.children[0].value
         if (e.target.children[0].value) {
             console.dir(e.target.children[0].value);
-        this.adapter.updateOrder(e.target.children[0].value)
+        this.adapter.updateOrder(e.target.children[0].value, id)
         }
     }
 
@@ -129,7 +133,7 @@ class Orders {
 
         } else {
             localStorage.clear()
-            // location.reload()
+            location.reload()
             btn.setAttribute('value', 'Login')
         }
 
