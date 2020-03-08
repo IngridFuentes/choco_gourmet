@@ -52,7 +52,7 @@ class Orders {
 
     handleOrderClick(e) {
         if (e.target.classList.contains('delete-order-link')){
-            console.log('This order will be deleted', e.target.parentNode);
+            console.log('This order has been deleted', e.target.parentNode);
             this.deleteOrder(e)
         } else {
             this.toggleOrder(e)
@@ -72,13 +72,16 @@ class Orders {
         const li = e.target.parentNode
         const id = li.dataset.id 
         const quantity = e.target.children[0].value
+
         if (e.target.children[0].value) {
-            console.dir(e.target.children[0].value);
-        this.adapter.updateOrder(e.target.children[0].value, id)
+        console.log(e.target.children[0].value + " : " + id);
+        let updateValue = document.querySelector(`#orders-container li[data-id='${id}'] span`)
+        updateValue.innerHTML = 'Quantity: ' + quantity;
+        this.adapter.updateOrder(quantity, id)
+            
         }
+
     }
-
-
     deleteOrder(e) {
         const li = e.target.parentNode
         const id = li.dataset.id

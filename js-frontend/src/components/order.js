@@ -8,7 +8,7 @@ class Order {
     }
 
     renderOrder(){
-         return `<li data-id=${this.id}>Quantity: ${this.quantity} Total: ${this.total} <button class="delete-order-link">Delete</button>
+         return `<li data-id=${this.id}> <span > Quantity: ${this.quantity}</span> Total: ${this.total} <button class="delete-order-link">Delete</button>
           
           <form>
                 <select data-id="order-id" >

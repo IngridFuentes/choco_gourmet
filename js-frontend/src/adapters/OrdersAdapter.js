@@ -40,10 +40,9 @@ class OrdersAdapter {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ newOrder })
+            body: JSON.stringify({ newOrder }),
         })
-        .then(res => res.json())
-        
+        .then(res => res.json())        
     }
 
     deleteOrder(id) {
